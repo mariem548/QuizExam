@@ -1,5 +1,6 @@
 import { randomAnswer } from "../utils/utils";
-import QuizButton from "./button";
+import QuizButton from "./quizButtons";
+import {arrayOf, func, shape, string} from 'prop-types';
 
 export default function QuizQuestions({
   questions,
@@ -13,19 +14,16 @@ export default function QuizQuestions({
     setSelectedAnswers(updateSelectedAnswers);
   };
   const renderAnswers = (question, questionIndex) => {
-    
-    return randomAnswer([
-      ...question.incorrect_answers,
-      question.correct_answer,
-    ]).map((answer) => (
+    const answers = [...question.incorrect_answers, question.correct_answer];
+    const buttonAnswer = (questionIndex, answer) =>
+      selectedAnswers[questionIndex] === answer
+        ? "btn-success active"
+        : "btn btn-outline-success";
+    return randomAnswer(answers).map((answer) => (
       <button
         type="button"
         key={answer}
-        className={`btn ${
-          selectedAnswers[questionIndex] === answer
-            ? "btn-success active"
-            : "btn btn-outline-success"
-        }`}
+        className={`btn ${buttonAnswer(questionIndex, answer)}`}
         onClick={() => handleAnswerClick(questionIndex, answer)}
       >
         {answer}
@@ -53,3 +51,13 @@ export default function QuizQuestions({
     </div>
   );
 }
+QuizQuestions.propTypes = {
+  questions: arrayOf(  shape({
+    question: string.isRequired,
+    correct_answer: string.isRequired,
+    incorrect_answers: arrayOf(  string).isRequired,
+  })).isRequired,
+  selectedAnswers:  arrayOf(  string).isRequired,
+  setSelectedAnswers: func.isRequired,
+  handleSubmit: func.isRequired,
+};
