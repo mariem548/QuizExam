@@ -15,6 +15,7 @@ export default function Quiz() {
     selectedAnswers,
     setSelectedAnswers,
   } = useContext(QuizContext);
+
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
@@ -44,13 +45,15 @@ export default function Quiz() {
   };
 
   const handleSubmit = () => {
-    const calculatedScore = questions.reduce((score, question, index) => {
-      score += selectedAnswers[index] === question.correct_answer ? 1 : 0;
+    let calculatedScore = 0;
+    questions.forEach((question, index) => {
+      if (selectedAnswers[index] === question.correct_answer) {
+        calculatedScore++;
+      }
     });
     setScore(calculatedScore);
     navigate("/results");
   };
-
   return (
     <div className="container mt-5">
       <h1 className="text-center">Quiz Maker</h1>

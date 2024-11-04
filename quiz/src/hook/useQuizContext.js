@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import { node } from "prop-types";
 
 export const QuizContext = createContext();
