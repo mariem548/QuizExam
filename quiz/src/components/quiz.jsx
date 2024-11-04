@@ -59,10 +59,6 @@ export default function Quiz() {
       <QuizCategory
         categories={categories}
         difficulties={difficulties}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedDifficulty={selectedDifficulty}
-        setSelectedDifficulty={setSelectedDifficulty}
         handleStartQuiz={handleStartQuiz}
       />{" "}
       {showQuiz && (
