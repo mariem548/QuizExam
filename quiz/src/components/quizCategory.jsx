@@ -1,16 +1,12 @@
 import { Form } from "react-bootstrap";
 import QuizButton from "./quizButtons";
+import { arrayOf, func,number,shape,string } from "prop-types";
 
 export default function QuizCategory({
   categories,
   difficulties,
-  selectedCategory,
-  setSelectedCategory,
-  selectedDifficulty,
-  setSelectedDifficulty,
   handleStartQuiz,
 }) {
-  // TODO: verifier les props 
   return (
     <Form>
       <div className="row">
@@ -46,3 +42,14 @@ export default function QuizCategory({
     </Form>
   );
 }
+QuizCategory.propTypes = {
+  categories: arrayOf( shape({
+    id: number.isRequired,
+    name:  string.isRequired,
+  })).isRequired,
+  difficulties:  arrayOf( shape({
+    id:  string.isRequired,
+    name:  string.isRequired,
+  })).isRequired,
+  handleStartQuiz:  func.isRequired,
+};
