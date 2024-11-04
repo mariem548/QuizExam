@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import QuizButton from "./quizButton";
+import QuizButton from "./button";
 
 export default function QuizCategory({
   categories,

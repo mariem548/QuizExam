@@ -1,5 +1,5 @@
 import { randomAnswer } from "../utils/utils";
-import QuizButton from "./quizButton";
+import QuizButton from "./button";
 
 export default function QuizQuestions({
   questions,
