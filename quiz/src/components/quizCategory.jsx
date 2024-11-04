@@ -8,7 +8,7 @@ export default function QuizCategory({
   handleStartQuiz,
 }) {
   return (
-    <Form>
+    <Form >
       <div className="row">
         <div className="col-5">
           <Form.Select aria-label="categorySelect" id="categorySelect">
@@ -21,7 +21,7 @@ export default function QuizCategory({
           </Form.Select>
         </div>
         <div className="col-5">
-          <Form.Select aria-label="Default select example">
+          <Form.Select aria-label="difficultySelect" id="difficultySelect">
             <option>Select Difficulty</option>
             {difficulties.map((level) => (
               <option key={level.id} value={level.id}>

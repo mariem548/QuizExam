@@ -1,6 +1,6 @@
-import { randomAnswer } from "../utils/utils";
 import QuizButton from "./quizButtons";
 import {arrayOf, func, shape, string} from 'prop-types';
+import he from "he";
 
 export default function QuizQuestions({
   questions,
@@ -19,8 +19,8 @@ return(
     <div className="mt-5">
       {questions.map((question, index) => (
         <div key={index}>
-          <h2>{question.question}</h2>
-          {randomAnswer([...question.incorrect_answers, question.correct_answer])
+          <h2>{he.decode(question.question)}</h2>
+          {[...question.incorrect_answers, question.correct_answer]
             .map((answer) => (
               <button
                 type="button"
@@ -29,11 +29,11 @@ return(
                   selectedAnswers[index] === answer
                     ? "btn-success active"
                     : "btn btn-outline-success"
-                }`}
+                } me-3 mb-3`}
                 onClick={() => handleAnswerClick(index, answer)}
               >
-                {answer}
-              </button>
+                  {he.decode(answer)}{" "}
+                  </button>
             ))}
         </div>
       ))}

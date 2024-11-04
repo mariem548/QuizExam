@@ -3,6 +3,7 @@ import { QuizContext } from "../hook/useQuizContext";
 import { useContext } from "react";
 import QuizButton from "./quizButtons";
 import QuizScore from "./quizScore";
+import he from "he";
 
 export default function QuizResults() {
   const { questions, score, selectedAnswers } = useContext(QuizContext);
@@ -13,7 +14,7 @@ export default function QuizResults() {
       <h1 className="text-center">RESULTS</h1>
       {questions.map((question, index) => (
         <div key={index} className="mb-3">
-          <h2>{question.question}</h2>
+          <h2>{he.decode(question.question)}</h2>
           {[...question.incorrect_answers, question.correct_answer].map(
             (answer) => {
               const isCorrect = answer === question.correct_answer;
@@ -24,16 +25,16 @@ export default function QuizResults() {
                   key={answer}
                   className={`btn ${
                     isCorrect ? "btn-success" : isSelected ? "btn-danger" : ""
-                  }`}
+                  } me-3 mb-3`}
                 >
-                  {answer}
+                  {he.decode(answer)}{" "}
                 </button>
               );
             }
           )}
         </div>
       ))}
-      <QuizScore score={score} totalQuestions={questions.length}/>
+      <QuizScore score={score} totalQuestions={questions.length} />
       <QuizButton
         className="d-grid gap-2"
         variant="btn btn-secondary mt-4"

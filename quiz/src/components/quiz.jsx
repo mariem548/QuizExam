@@ -18,8 +18,10 @@ export default function Quiz() {
 
   const [categories, setCategories] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [time, setTime] = useState(false);
 
   useEffect(() => {
+    setTime(false);
     const getCategories = async () => {
       try {
         const categoriesData = await fetchCategories();
@@ -32,12 +34,17 @@ export default function Quiz() {
   }, []);
 
   const handleStartQuiz = async () => {
+   
     try {
+      setTime(true);
       const questions = await fetchQuestions();
       setQuestions(questions);
       setShowQuiz(true);
     } catch (error) {
       console.error("Error fetching questions:", error);
+    }
+    finally{
+      setTimeout(()=>setTime(false),2000)
     }
   };
 
