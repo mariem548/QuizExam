@@ -44,12 +44,12 @@ export default function Quiz() {
   };
 
   const handleSubmit = () => {
-    let calculatedScore = 0;
-    questions.forEach((question, index) => {
-      if (selectedAnswers[index] === question.correct_answer) {
-        calculatedScore++;
-      }
-    });
+    const calculatedScore = questions.reduce(
+      (score, { correct_answer }, index) => 
+        score + (selectedAnswers[index] === correct_answer ? 1 : 0),
+      0
+    );
+    
     setScore(calculatedScore);
     navigate("/results");
   };
