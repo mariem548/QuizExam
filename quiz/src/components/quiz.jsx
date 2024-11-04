@@ -26,7 +26,6 @@ export default function Quiz() {
       try {
         const categoriesData = await fetchCategories();
         setCategories(categoriesData);
-        console.log("categoriesData", categoriesData);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }

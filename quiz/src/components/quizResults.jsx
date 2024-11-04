@@ -6,7 +6,6 @@ import QuizScore from "./quizScore";
 
 export default function QuizResults() {
   const { questions, score, selectedAnswers } = useContext(QuizContext);
-  console.log('score',score);
   const navigate = useNavigate();
 
   return (
