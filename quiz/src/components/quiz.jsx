@@ -17,8 +17,6 @@ export default function Quiz() {
   } = useContext(QuizContext);
 
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [showQuiz, setShowQuiz] = useState(false);
 
   useEffect(() => {
