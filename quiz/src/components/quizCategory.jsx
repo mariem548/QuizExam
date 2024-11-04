@@ -1,25 +1,47 @@
 import { Form } from "react-bootstrap";
+import QuizButton from "./quizButton";
 
-export default function QuizCategory() {
+export default function QuizCategory({
+  categories,
+  difficulties,
+  selectedCategory,
+  setSelectedCategory,
+  selectedDifficulty,
+  setSelectedDifficulty,
+  handleStartQuiz,
+}) {
+  // TODO: verifier les props 
   return (
     <Form>
       <div className="row">
         <div className="col-5">
-          <Form.Select aria-label="categorySelect"  id="categorySelect">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <Form.Select aria-label="categorySelect" id="categorySelect">
+            <option> Select Category </option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
           </Form.Select>
         </div>
         <div className="col-5">
           <Form.Select aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option>Select Difficulty</option>
+            {difficulties.map((level) => (
+              <option key={level.id} value={level.id}>
+                {level.name}
+              </option>
+            ))}
           </Form.Select>
         </div>
+        <QuizButton
+          className="col-2"
+          id="createBtn"
+          variant="primary"
+          onClick={handleStartQuiz}
+        >
+          Create
+        </QuizButton>
       </div>
     </Form>
   );
