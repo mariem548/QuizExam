@@ -7,7 +7,9 @@ import QuizQuestions from "./quizQuestions";
 import { difficulties } from "../utils/utils";
 
 export default function Quiz() {
+  
   const navigate = useNavigate();
+
   const {
     questions,
     setQuestions,
@@ -18,10 +20,9 @@ export default function Quiz() {
 
   const [categories, setCategories] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
-  const [time, setTime] = useState(false);
+  const [timeClick, setTimeClick] = useState(false);
 
   useEffect(() => {
-    setTime(false);
     const getCategories = async () => {
       try {
         const categoriesData = await fetchCategories();
@@ -34,9 +35,9 @@ export default function Quiz() {
   }, []);
 
   const handleStartQuiz = async () => {
-   
+    if (timeClick) return;
     try {
-      setTime(true);
+      setTimeClick(true);
       const questions = await fetchQuestions();
       setQuestions(questions);
       setShowQuiz(true);
@@ -44,7 +45,7 @@ export default function Quiz() {
       console.error("Error fetching questions:", error);
     }
     finally{
-      setTimeout(()=>setTime(false),2000)
+      setTimeout(()=>setTimeClick(false),1000)
     }
   };
 

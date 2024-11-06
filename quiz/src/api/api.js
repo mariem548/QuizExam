@@ -1,7 +1,7 @@
 export const fetchCategories = async () => {
   const responseCategorie = await fetch("https://opentdb.com/api_category.php");
   if (!responseCategorie.ok) {
-    return new Error(" Problème lors de chargement des categories ");
+    return new Error(" Problème lors de chargement des categories");
   }
   const data = await responseCategorie.json();
   return data.trivia_categories;
