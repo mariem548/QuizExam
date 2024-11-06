@@ -23,6 +23,7 @@ export default function Quiz() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [isDisabled, setIsDisabled] = useState(true)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -38,13 +39,17 @@ export default function Quiz() {
 
   useEffect(() => {
     // Le bouton est activé uniquement lorsque les deux sélections sont faites
-    setIsDisabled(!(selectedCategory && selectedDifficulty));
-  }, [selectedCategory, selectedDifficulty]);
+    setIsDisabled(!(selectedCategory && selectedDifficulty) || isLoading);
+  }, [selectedCategory, selectedDifficulty, isLoading]);
+
+
 
   const handleStartQuiz = async () => {
-    if (timeClick) return;
-    try {
-      setTimeClick(true);
+    if (timeClick || isLoading) return;
+    setTimeClick(true);
+    setIsLoading(true);
+      try {
+      
       const questions = await fetchQuestions(
         selectedCategory,
         selectedDifficulty
@@ -54,7 +59,8 @@ export default function Quiz() {
     } catch (error) {
       console.error("Error fetching questions:", error);
     } finally {
-      setTimeout(() => setTimeClick(false), 1000);
+      setIsLoading(false);
+      setTimeClick(false);
     }
   };
 
@@ -81,6 +87,7 @@ export default function Quiz() {
         selectedDifficulty={selectedDifficulty}
         setSelectedDifficulty={setSelectedDifficulty}
         isDisabled={isDisabled}
+        isLoading={isLoading}
       />
       {showQuiz && (
         <QuizQuestions
