@@ -21,6 +21,8 @@ export default function Quiz() {
   const [categories, setCategories] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
   const [timeClick, setTimeClick] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
   useEffect(() => {
     const getCategories = async () => {
@@ -38,7 +40,7 @@ export default function Quiz() {
     if (timeClick) return;
     try {
       setTimeClick(true);
-      const questions = await fetchQuestions();
+      const questions = await fetchQuestions(selectedCategory, selectedDifficulty);
       setQuestions(questions);
       setShowQuiz(true);
     } catch (error) {
@@ -66,6 +68,11 @@ export default function Quiz() {
         categories={categories}
         difficulties={difficulties}
         handleStartQuiz={handleStartQuiz}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        selectedDifficulty={selectedDifficulty}
+        setSelectedDifficulty={setSelectedDifficulty}
+
       />{" "}
       {showQuiz && (
         <QuizQuestions
