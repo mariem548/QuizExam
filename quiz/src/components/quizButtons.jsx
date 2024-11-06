@@ -16,4 +16,5 @@ export default function QuizButton({ id, variant, onClick, children,className,di
     onClick: func.isRequired,
     children: node.isRequired,
     className: string,
+    disabled : func
   };
