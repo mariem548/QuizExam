@@ -7,14 +7,13 @@ export const fetchCategories = async () => {
   return data.trivia_categories;
 };
 
-export const fetchQuestions = async () => {
-  const responseQuestions = await fetch(
-    "https://opentdb.com/api.php?amount=5&category=11&difficulty=easy&type=multiple"
-  );
+export const fetchQuestions = async (category, difficulty) => {
+  const url = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=${difficulty}&type=multiple`;
+
+  const responseQuestions = await fetch(url);
   if (!responseQuestions.ok) {
     throw new Error(" Problème lors de récuperation des questions");
   }
   const data = await responseQuestions.json();
-  console.log("data", data.results);
   return data.results;
 };
