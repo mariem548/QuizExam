@@ -10,12 +10,14 @@ export default function QuizCategory({
   selectedDifficulty,
   setSelectedDifficulty,
   handleStartQuiz,
+  isDisabled,
 }) {
   return (
     <Form >
       <div className="row">
         <div className="col-5">
-          <Form.Select aria-label="categorySelect" id="categorySelect"     value={selectedCategory}
+          <Form.Select aria-label="categorySelect" id="categorySelect"     
+          value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}>
             <option> Select Category </option>
             {categories.map((cat) => (
@@ -26,7 +28,8 @@ export default function QuizCategory({
           </Form.Select>
         </div>
         <div className="col-5">
-          <Form.Select aria-label="difficultySelect" id="difficultySelect"         value={selectedDifficulty}
+          <Form.Select aria-label="difficultySelect" id="difficultySelect"         
+          value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)} >
             <option>Select Difficulty</option>
             {difficulties.map((level) => (
@@ -37,10 +40,12 @@ export default function QuizCategory({
           </Form.Select>
         </div>
         <QuizButton
+        
           className="col-2"
           id="createBtn"
           variant="primary"
           onClick={handleStartQuiz}
+          disabled={isDisabled}
         >
           Create
         </QuizButton>

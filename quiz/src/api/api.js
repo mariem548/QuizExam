@@ -15,6 +15,5 @@ export const fetchQuestions = async (category, difficulty) => {
     throw new Error(" Problème lors de récuperation des questions");
   }
   const data = await responseQuestions.json();
-  console.log("data", data.results);
   return data.results;
 };
