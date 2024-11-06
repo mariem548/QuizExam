@@ -39,7 +39,7 @@ export default function Quiz() {
 
   useEffect(() => {
     // Le bouton est activé uniquement lorsque les deux sélections sont faites
-    setIsDisabled(!(selectedCategory && selectedDifficulty) || isLoading);
+    setIsDisabled((!selectedCategory && !selectedDifficulty) || isLoading);
   }, [selectedCategory, selectedDifficulty, isLoading]);
 
 
@@ -60,7 +60,7 @@ export default function Quiz() {
       console.error("Error fetching questions:", error);
     } finally {
       setIsLoading(false);
-      setTimeClick(false);
+      setTimeout(() => setTimeClick(false), 1000); 
     }
   };
 
