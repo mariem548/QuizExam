@@ -25,6 +25,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+ 
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,6 +49,8 @@
     "gh-pages": "^6.2.0"
   },
   "babel": {
-    "plugins": ["@babel/plugin-transform-runtime"]
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   }
 }
