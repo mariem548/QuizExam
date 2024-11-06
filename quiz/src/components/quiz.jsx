@@ -60,7 +60,7 @@ export default function Quiz() {
       console.error("Error fetching questions:", error);
     } finally {
       setIsLoading(false);
-      setTimeout(() => setTimeClick(false), 1000); 
+      setTimeout(() => setTimeClick(false), 2000); 
     }
   };
 
