@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { func, node,string, } from "prop-types";
+import { bool, func, node,string, } from "prop-types";
 
 export default function QuizButton({ id, variant, onClick, children,className,disabled }) {
     return (
@@ -16,5 +16,5 @@ export default function QuizButton({ id, variant, onClick, children,className,di
     onClick: func.isRequired,
     children: node.isRequired,
     className: string,
-    disabled : func
+    disabled : bool
   };

@@ -77,6 +77,6 @@ QuizCategory.propTypes = {
   selectedDifficulty: string.isRequired,
   setSelectedDifficulty: func.isRequired,
   handleStartQuiz: func.isRequired,
-  isDisabled: bool.isRequired,
+  isDisabled: bool,
   isLoading: bool.isRequired,
 };

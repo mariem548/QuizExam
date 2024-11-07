@@ -19,7 +19,6 @@ export default function Quiz() {
 
   const [categories, setCategories] = useState([]);
   const [showQuiz, setShowQuiz] = useState(false);
-  const [timeClick, setTimeClick] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [isDisabled, setIsDisabled] = useState(true)
@@ -45,11 +44,9 @@ export default function Quiz() {
 
 
   const handleStartQuiz = async () => {
-    if (timeClick || isLoading) return;
-    setTimeClick(true);
+    if ( isLoading) return;
     setIsLoading(true);
       try {
-      
       const questions = await fetchQuestions(
         selectedCategory,
         selectedDifficulty
@@ -60,7 +57,6 @@ export default function Quiz() {
       console.error("Error fetching questions:", error);
     } finally {
       setIsLoading(false);
-      setTimeout(() => setTimeClick(false), 2000); 
     }
   };
 
